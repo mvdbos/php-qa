@@ -66,7 +66,3 @@ RUN /tmp/install-composer.sh && \
         "phpmd/phpmd:^2" \
         "friendsofphp/php-cs-fixer:^1" \
         "sebastian/phpcpd:^2"
-
-# Set up the application directory.
-VOLUME ["/app"]
-WORKDIR /app
