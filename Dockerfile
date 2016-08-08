@@ -47,6 +47,8 @@ RUN	echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 		php7-xdebug \
 		php7-mbstring \
 		php7-phar \
+		php7-ast \
+		php7-sqlite3 \
 		php7-ctype && \
     
     # Make php7 the default php
@@ -70,7 +72,8 @@ RUN /tmp/install-composer.sh && \
         "squizlabs/php_codesniffer:^2" \
         "phpmd/phpmd:^2" \
         "friendsofphp/php-cs-fixer:^1" \
-        "sebastian/phpcpd:^2" && \
+        "sebastian/phpcpd:^2" \
+        "etsy/phan:dev-master" && \
 
     # make things writable for host user, so we can configure php, even when
     # running through our setuid-runner.sh script
