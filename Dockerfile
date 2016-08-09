@@ -69,7 +69,7 @@ RUN /tmp/install-composer.sh && \
     composer selfupdate && \
     composer require --prefer-stable --prefer-dist \ 
         "phpunit/phpunit:^5" \
-        "squizlabs/php_codesniffer:^2" \
+        "squizlabs/php_codesniffer:3.0.x-dev" \
         "phpmd/phpmd:^2" \
         "friendsofphp/php-cs-fixer:^1" \
         "sebastian/phpcpd:^2" \
