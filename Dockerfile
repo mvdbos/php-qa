@@ -29,32 +29,29 @@ RUN	echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	apk add --update \
 	    su-exec \ 
 	    wget \
-	    php7 \
-		php7-mcrypt \
-		php7-soap \
-		php7-openssl \
-		php7-json \
-		php7-dom \
-		php7-zip \
-		php7-bcmath \
-		php7-gd \
-		php7-gettext \
-		php7-xmlreader \
-		php7-xmlrpc \
-		php7-bz2 \
-		php7-iconv \
-		php7-curl \
-		php7-xdebug \
-		php7-mbstring \
-		php7-phar \
-		php7-ast \
-		php7-sqlite3 \
-		php7-ctype && \
-    
-    # Make php7 the default php
-    ln -s /etc/php7 /etc/php && \
-    ln -s /usr/bin/php7 /usr/bin/php && \
-    ln -s /usr/lib/php7 /usr/lib/php && \
+	    php5 \
+		php5-mcrypt \
+		php5-soap \
+		php5-openssl \
+		php5-json \
+		php5-dom \
+		php5-zip \
+		php5-bcmath \
+		php5-gd \
+		php5-gettext \
+		php5-xmlreader \
+		php5-xmlrpc \
+		php5-bz2 \
+		php5-iconv \
+		php5-curl \
+		php5-xdebug \
+		php5-phar \
+		php5-sqlite3 \
+		php5-ctype && \
+
+    # Make php5 the default php
+    ln -s /etc/php5 /etc/php && \
+    ln -s /usr/lib/php5 /usr/lib/php && \
 
     # Set environments
 	sed -i "s|;*date.timezone =.*|date.timezone = ${TIMEZONE}|i" /etc/php/php.ini && \
@@ -68,16 +65,15 @@ RUN	echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 RUN /tmp/install-composer.sh && \
     composer selfupdate && \
     composer require --prefer-stable --prefer-dist \ 
-        "phpunit/phpunit:^5" \
+        "phpunit/phpunit:^4" \
         "squizlabs/php_codesniffer:3.0.x-dev" \
         "phpmd/phpmd:^2" \
         "friendsofphp/php-cs-fixer:^1" \
-        "sebastian/phpcpd:^2" \
-        "etsy/phan:dev-master" && \
+        "sebastian/phpcpd:^2" && \
 
     # make things writable for host user, so we can configure php, even when
     # running through our setuid-runner.sh script
-    chmod -R a+rwX /etc/php7 && \
+    chmod -R a+rwX /etc/php && \
     chmod -R a+rwX /tmp
 
 VOLUME "/app"
