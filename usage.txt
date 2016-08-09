@@ -1,0 +1,12 @@
+This container does nothing when invoking it without a command.
+
+Available commands:
+- sh
+- php
+- composer
+- phpunit
+- phpmd
+- phpcs
+- phpcbf
+- phpcpd
+- php-cs-fixer

@@ -4,6 +4,7 @@ MAINTAINER Matthijs van den Bos <matthijs@vandenbos.org>
 
 COPY setuser.sh /usr/local/bin
 COPY setuid-runner.sh /usr/local/bin
+COPY usage.txt /tmp
 
 WORKDIR /tmp
 
@@ -84,3 +85,4 @@ VOLUME "/app"
 
 # Stolen from http://stackoverflow.com/a/27925525/844313
 ENTRYPOINT ["/usr/local/bin/setuid-runner.sh"]
+CMD ["cat",  "/tmp/usage.txt"]
