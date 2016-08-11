@@ -29,6 +29,8 @@ RUN	echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	echo "${TIMEZONE}" > /etc/timezone && \
 	apk add --update \
 	    su-exec \ 
+	    make \
+	    curl \
 	    wget \
 	    php7 \
 		php7-posix \
@@ -75,7 +77,13 @@ RUN /tmp/install-composer.sh && \
         "phpmd/phpmd:^2" \
         "friendsofphp/php-cs-fixer:^1" \
         "sebastian/phpcpd:^2" \
+        "techlivezheng/phpctags:dev-master" \
         "etsy/phan:dev-master" && \
+
+    # Build and copy phpctags
+    cd /tmp/vendor/techlivezheng/phpctags && \
+    make && \
+    cp /tmp/vendor/techlivezheng/phpctags/build/phpctags.phar /usr/local/bin/phpctags && \
 
     # make things writable for host user, so we can configure php, even when
     # running through our setuid-runner.sh script
