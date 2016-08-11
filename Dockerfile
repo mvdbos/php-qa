@@ -31,6 +31,7 @@ RUN	echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	    su-exec \ 
 	    wget \
 	    php7 \
+		php7-posix \
 		php7-mcrypt \
 		php7-soap \
 		php7-openssl \
