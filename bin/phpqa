@@ -1,4 +1,4 @@
 #!/bin/sh
 
-docker run -it --rm --user="$(id -u):$(id -g)" -v "$PWD":"$PWD" -v /tmp:/tmp -w "$PWD" mvdbos/php-qa:latest "$@"
+docker run -it --rm --user="$(id -u):$(id -g)" -v "$HOME":"$HOME" -v "$PWD":"$PWD" -v /tmp:/tmp -w "$PWD" mvdbos/php-qa:latest "$@"
 
