@@ -1,4 +1,4 @@
 #!/bin/sh
 
-docker run -it --rm -v "$PWD":/app -w /app --entrypoint /bin/sh mvdbos/php-qa:latest "$@"
+docker run -it --rm -v "$PWD":"$PWD" -v /tmp:/tmp -w "$PWD" mvdbos/php-qa:latest "$@"
 
