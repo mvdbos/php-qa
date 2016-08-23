@@ -1,7 +1,7 @@
 #!/bin/sh
 
 EXPECTED_SIGNATURE=$(wget https://composer.github.io/installer.sig -O - -q)
-php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+wget https://getcomposer.org/installer -O composer-setup.php
 ACTUAL_SIGNATURE=$(php -r "echo hash_file('SHA384', 'composer-setup.php');")
 
 if [ "$EXPECTED_SIGNATURE" = "$ACTUAL_SIGNATURE" ]

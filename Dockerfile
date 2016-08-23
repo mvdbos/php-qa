@@ -6,6 +6,8 @@ ENV TARGET_DIR="/usr/local/lib/phpqa" \
     COMPOSER_HOME="/tmp/.composer" \
     COMPOSER_BIN_DIR="/usr/local/bin" \
     COMPOSER_ALLOW_SUPERUSER=1 \
+    HTTP_PROXY_REQUEST_FULLURI=1 \
+    HTTPS_PROXY_REQUEST_FULLURI=0 \
     TIMEZONE=Europe/Amsterdam \
     PHP_MEMORY_LIMIT=512M
 
@@ -32,6 +34,7 @@ RUN	echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 	    make \
 	    curl \
 	    wget \
+	    git \
 	    php7 \
 		php7-posix \
 		php7-mcrypt \
@@ -71,6 +74,7 @@ RUN	echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposit
 # Run composer and phpunit installation.
 RUN $TARGET_DIR/install-composer.sh && \
     composer selfupdate && \
+    composer require --prefer-stable --prefer-source "hirak/prestissimo:^0.3" && \
     composer require --prefer-stable --prefer-dist \
         "phpunit/phpunit:^5" \
         "squizlabs/php_codesniffer:3.0.x-dev" \

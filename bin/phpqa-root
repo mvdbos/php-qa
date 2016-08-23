@@ -1,4 +1,8 @@
 #!/bin/sh
 
-docker run -it --rm -v "$HOME":"$HOME" -v "$PWD":"$PWD" -v /tmp:/tmp -w "$PWD" mvdbos/php-qa:latest "$@"
+proxy_flags=""
+[ -n "$HTTP_PROXY" ] && proxy_flags="$proxy_flags -e HTTP_PROXY=$HTTP_PROXY"
+[ -n "$HTTPS_PROXY" ] && proxy_flags="$proxy_flags -e HTTPS_PROXY=$HTTPS_PROXY"
+
+docker run -it --rm --net=host $proxy_flags -v "$HOME":"$HOME" -v "$PWD":"$PWD" -v /tmp:/tmp -w "$PWD" mvdbos/php-qa:latest "$@"
 
