@@ -11,9 +11,9 @@ ENV TARGET_DIR="/usr/local/lib/phpqa" \
     TIMEZONE=Europe/Amsterdam \
     PHP_MEMORY_LIMIT=512M
 
-WORKDIR $TARGET_DIR
-
 RUN mkdir -p $TARGET_DIR
+
+WORKDIR $TARGET_DIR
 
 COPY usage.txt $TARGET_DIR
 
