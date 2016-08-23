@@ -3,7 +3,7 @@ FROM alpine:edge
 MAINTAINER Matthijs van den Bos <matthijs@vandenbos.org>
 
 ENV TARGET_DIR="/usr/local/lib/phpqa" \
-    COMPOSER_HOME="$TARGET_DIR/.composer" \
+    COMPOSER_HOME="/tmp/.composer" \
     COMPOSER_BIN_DIR="/usr/local/bin" \
     COMPOSER_ALLOW_SUPERUSER=1 \
     TIMEZONE=Europe/Amsterdam \
